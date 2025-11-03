@@ -1,7 +1,7 @@
 // Login.tsx
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './AdminLogin.module.scss';
+import styles from './UserLogin.module.scss';
 
 // TODO: 실제로는 useAuthContext 등을 사용
 const UserLogin = () => {
@@ -17,7 +17,7 @@ const UserLogin = () => {
     // 일단은 그냥 로그인 되었다고 가정
 
     // 쿼리 파라미터로 전달된 리디렉션 경로로 이동
-    const redirectPath = searchParams.get('pathname') || '/admin/main';
+    const redirectPath = searchParams.get('pathname') || '/user/main';
     navigate(redirectPath, { replace: true });
   };
 
