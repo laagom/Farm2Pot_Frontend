@@ -1,10 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import React from 'react';
-import AdminLogin from '../gate/UserLogin';
+import UserLogin from '../gate/UserLogin';
 import About from './About';
 import Profile from './Profile';
-import UserLogin from '../gate/UserLogin';
 
 const router = createBrowserRouter([
   {
