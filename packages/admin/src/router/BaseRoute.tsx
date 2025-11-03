@@ -1,6 +1,7 @@
 // Root.tsx
 import { Link, Outlet } from "react-router-dom";
-import TopLayout from "../component/common/top/TopLayout";
+
+import TopLayout from "@core/component/common/top/TopLayout";
 import styles from "./BaseRoute.module.scss";
 
 export default function BaseRoute() {
