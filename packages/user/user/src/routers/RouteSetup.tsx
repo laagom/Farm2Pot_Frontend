@@ -1,9 +1,15 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 
 import React from 'react';
-import UserLogin from '../gate/UserLogin';
+import UserLogin from '../component/login/UserLogin';
 import About from './About';
 import Profile from './Profile';
+import UserLayout from './UserLayout';
+import BaseRoute from './BaseRoute';
 
 const router = createBrowserRouter([
   {
@@ -14,15 +20,27 @@ const router = createBrowserRouter([
     path: '/user/login',
     element: <UserLogin />, // 로그인 페이지 라우트
   },
-  // 관리자 페이지
+  // 유저 페이지
   {
     path: '/user',
-    element: <UserLogin />, // <Outlet /> 포함
+    element: <BaseRoute />, // <Outlet /> 포함
     children: [
-      { index: true, element: <UserLogin /> }, // /
-      { path: 'main', element: <UserLogin /> }, // /main
-      { path: 'about', element: <About /> }, // /about
-      { path: 'profile', element: <Profile /> }, // /profile
+      {
+        index: true,
+        element: <Navigate to="main" replace />,
+      },
+      {
+        path: 'main',
+        element: <UserLayout />,
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
+      },
     ],
   },
 ]);
