@@ -10,7 +10,7 @@ export const sharedConfig = defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "../../packages/shared"),
+      "@": path.resolve(__dirname, "../../packages/core"),
     },
   },
   server: {
