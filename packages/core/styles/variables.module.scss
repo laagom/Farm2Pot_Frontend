@@ -1,0 +1,12 @@
+.adminLayout {
+  display: flex;
+  height: 100vh;
+  background: #f5f6fa;
+  font-family: "Noto Sans KR", sans-serif;
+
+  /* 메인 컨텐츠 영역 */
+  &__content {
+    flex: 1;
+    padding: 30px;
+  }
+}
