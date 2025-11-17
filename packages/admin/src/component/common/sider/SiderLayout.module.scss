@@ -57,12 +57,21 @@
       margin: 0;
 
       li {
+        margin: 8px 0;
         padding: 14px 20px;
         cursor: pointer;
         border-bottom: 1px solid #2c2f38;
 
         &:hover {
           background: #343741;
+        }
+        a {
+          text-decoration: none; // 밑줄 제거
+          color: inherit; // 부모 색상 상속
+          font-weight: 500;
+          display: block;
+          padding: 4px 8px;
+          border-radius: 4px;
         }
       }
     }

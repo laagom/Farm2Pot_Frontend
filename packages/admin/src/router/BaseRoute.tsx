@@ -19,11 +19,11 @@ export default function BaseRoute() {
 
           {/* 네비게이션 링크 추가 */}
           <nav className={styles.routeHeader__headerContent__nav}>
-            <Link to="/products">Product List</Link>
-            <Link to="/inventory">Inventory</Link>
-            <Link to="/policy">Policy</Link>
-            <Link to="/box">Box</Link>
-            <Link to="/etc">Etc</Link>
+            <Link to="/admin/products">Product List</Link>
+            <Link to="/admin/inventory">Inventory</Link>
+            <Link to="/admin/policy">Policy</Link>
+            <Link to="/admin/box">Box</Link>
+            <Link to="/admin/etc">Etc</Link>
           </nav>
         </div>
       </header>
