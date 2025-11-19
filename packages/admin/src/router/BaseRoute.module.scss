@@ -1,8 +1,7 @@
 .routeHeader {
   display: flex;
-  justify-content: space-between; // 왼쪽 로고, 오른쪽 메뉴
   align-items: center;
-  padding: 0 40px;
+  padding: 0 20px;
   height: 60px;
   background-color: white;
   border-bottom: 1px solid #ddd;
@@ -10,18 +9,22 @@
   &__headerContent {
     display: flex;
     align-items: center;
-    justify-content: center; // 전체 가운데 정렬
-    gap: 400px; // 로고와 메뉴 간격
-    height: 60px;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
 
     &__serviceName {
       font-size: 24px;
       font-weight: bold;
+      position: absolute;
+      left: 0; // 왼쪽 끝에 고정
     }
 
     &__nav {
       display: flex;
-      gap: 24px; // 메뉴 간격
+      gap: 24px;
+      margin-left: auto; // 로고 오른쪽에 붙고 화면 줄어들면 왼쪽으로 이동
+      flex-wrap: wrap; // 좁으면 줄 바꿈 가능
     }
 
     &__nav a {
@@ -30,7 +33,7 @@
       font-weight: 500;
 
       &:hover {
-        color: #007bff; // hover 시 색상 변경
+        color: #007bff;
       }
     }
   }

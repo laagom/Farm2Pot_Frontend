@@ -3,90 +3,146 @@
   height: 100vh;
   background: #f5f6fa;
   font-family: "Noto Sans KR", sans-serif;
+}
 
-  /* 사이드바 */
-  &__sidebar {
-    background: #1d1f27;
+/* ------------------------------
+   기본 사이드바 스타일 (PC 기준)
+------------------------------ */
+.adminLayout__sidebar {
+  background: #1d1f27;
+  color: #fff;
+  height: 100%;
+  transition: width 0.25s ease, transform 0.25s ease;
+  padding-top: 10px;
+  position: relative;
+  width: 60px; // 기본: 닫힌 사이드바
+
+  display: flex;
+  flex-direction: column;
+  z-index: 10; // 모바일 오버레이 대비
+
+  &.open {
+    width: 220px; // 펼쳐진 상태
+  }
+
+  /* 토글 버튼 */
+  &__toggleBtn {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    border: none;
+    background: #2c2f38;
     color: #fff;
-    height: 100%;
-    transition: width 0.25s ease;
-    padding-top: 10px;
-    position: relative;
-    width: 60px; // 기본 닫힌 사이즈
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
 
-    /* 토글 버튼 */
-    &__toggleBtn {
-      width: 40px;
-      height: 40px;
-      margin-left: 10px;
-      margin-bottom: 20px;
-      border: none;
-      background: #2c2f38;
-      color: #fff;
+    &:hover {
+      background: #3c3f4a;
+    }
+  }
+
+  /* Write 버튼 */
+  &__writeBtn {
+    width: calc(100% - 20px);
+    margin: 0 10px 15px 10px;
+    padding: 10px 0;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #357ab8;
+    }
+  }
+
+  /* 메뉴 */
+  &__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 8px 0;
+      padding: 14px 20px;
       cursor: pointer;
-      border-radius: 5px;
-      font-size: 20px;
+      border-bottom: 1px solid #2c2f38;
 
       &:hover {
-        background: #3c3f4a;
+        background: #343741;
       }
-    }
 
-    /* Write 버튼 */
-    &__writeBtn {
-      width: calc(100% - 20px);
-      margin: 0 10px 15px 10px;
-      padding: 10px 0;
-      background: #4a90e2;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: background 0.2s ease;
-
-      &:hover {
-        background: #357ab8;
-      }
-    }
-
-    /* 메뉴 */
-    &__menu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        margin: 8px 0;
-        padding: 14px 20px;
-        cursor: pointer;
-        border-bottom: 1px solid #2c2f38;
-
-        &:hover {
-          background: #343741;
-        }
-        a {
-          text-decoration: none; // 밑줄 제거
-          color: inherit; // 부모 색상 상속
-          font-weight: 500;
-          display: block;
-          padding: 4px 8px;
-          border-radius: 4px;
-        }
+      a {
+        text-decoration: none;
+        color: inherit;
+        font-weight: 500;
+        display: block;
+        padding: 4px 8px;
+        border-radius: 4px;
       }
     }
   }
 }
 
-.open {
-  width: 220px;
+/* 메인 콘텐츠 */
+.adminLayout__content {
+  flex: 1;
+  overflow-y: auto;
+  background: #f5f6fa;
+  padding: 20px;
 }
 
-/* 사이드바 닫힌 상태에서의 Write 버튼 아이콘 모드 */
-.sidebar:not(.open) .writeBtn {
-  width: 40px;
-  padding: 10px 0;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
+/* ------------------------------------------------------
+    📌 반응형: 태블릿 (1024px 이하)
+------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .adminLayout__sidebar {
+    width: 60px; // 기본 닫힘
+  }
+
+  .adminLayout__sidebar.open {
+    width: 180px; // 열릴 때 조금 더 작게
+  }
+}
+
+/* ------------------------------------------------------
+    📌 반응형: 모바일 (768px 이하)
+------------------------------------------------------ */
+@media (max-width: 768px) {
+  .adminLayout {
+    position: relative;
+  }
+
+  .adminLayout__sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 220px; // 모바일에서 열릴 때 full size
+    transform: translateX(-100%);
+  }
+
+  .adminLayout__sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* 어두운 배경 오버레이 */
+  .adminLayout__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+  }
+
+  .adminLayout__content {
+    padding: 15px;
+  }
 }

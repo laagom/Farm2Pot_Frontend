@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../sider/SiderLayout.module.scss";
 
@@ -8,10 +8,34 @@ type Props = {
 
 function SiderLayout({ children }: Props) {
   const [open, setOpen] = useState(true);
-  const navigate = useNavigate(); // navigate 함수 가져오기
+  const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+
+  // 화면 크기 감지
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth <= 768) {
+        setOpen(false); // 모바일이면 기본 닫힘
+      } else {
+        setOpen(true); // PC/태블릿은 기본 열림
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
+      {/* 모바일 오버레이 */}
+      {isMobile && open && (
+        <div
+          className={styles.adminLayout__overlay}
+          onClick={() => setOpen(false)}
+        ></div>
+      )}
+
       {/* 사이드바 */}
       <aside
         className={`${styles.adminLayout__sidebar} ${open ? styles.open : ""}`}
@@ -53,6 +77,7 @@ function SiderLayout({ children }: Props) {
           </ul>
         )}
       </aside>
+
       {/* 메인 컨텐츠 영역 */}
       <main className={styles.adminLayout__content}>{children}</main>
     </>
