@@ -1,84 +1,100 @@
-/* 전체 화면 배경 */
-.loginContainer {
+// UserLogin.module.scss
+
+// Main section
+.main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #a8edea, #fed6e3);
-  font-family: "Noto Sans KR", sans-serif;
+  padding: 20px 10px;
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
-/* 로그인 박스 */
-.loginBox {
-  background: white;
-  width: 350px;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.loginBox h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-/* 입력 필드 */
-.inputGroup {
-  margin-bottom: 20px;
-  margin-right: 20px;
-}
-
-.inputGroup label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
-  color: #555;
-}
-
-.inputGroup input {
+.loginImage {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  transition: 0.2s;
+  max-width: 600px;
+  margin-bottom: 20px;
 }
 
-.inputGroup input:focus {
-  border-color: #6e8efb;
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.loginForm {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 768px) {
+    width: 40%;
+    margin-left: 20px;
+  }
+}
+
+.title {
+  font-size: 1.5rem; // text-2xl
+  font-weight: 600; // font-semibold
+  margin-bottom: 1rem; // mb-1
+}
+
+.description {
+  color: #6b7280; // text-gray-500
+  margin-bottom: 1.5rem; // mb-6
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; // space-y-5
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem; // text-base
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+
+.input:focus {
+  border-color: #f87171; // focus:border-red-400
   outline: none;
 }
 
-/* 로그인 버튼 */
-.loginBtn {
+.button {
   width: 100%;
-  padding: 12px;
-  background: #6e8efb;
-  border: none;
-  border-radius: 6px;
+  padding: 10px;
+  background-color: #ff0000;
   color: white;
-  font-size: 16px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  //transition: background 0.3s;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
 }
 
-.loginBtn:hover {
-  background: #5a7be6;
+.button:hover {
+  background-color: #cc0000;
 }
 
-/* 하단 링크 */
-.loginFooter {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
+.forgotPassword {
+  text-align: right;
+  margin-top: 1rem; // mt-3
 }
 
-.loginFooter a {
-  color: #6e8efb;
-  text-decoration: none;
-}
-
-.loginFooter a:hover {
+.forgotPassword a {
+  font-size: 0.875rem; // text-sm
+  color: #f87171; // text-red-500
   text-decoration: underline;
 }

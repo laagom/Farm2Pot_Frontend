@@ -1,0 +1,103 @@
+// Footer.module.scss
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 30px 20px;
+  text-align: left;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600; // Tailwind's font-semibold
+  margin-bottom: 15px;
+}
+
+.text {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.subscribeInputWrapper {
+  display: flex;
+  border: 1px solid #555;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%; // Ensure the input fills available width
+  max-width: 400px; // Limit max width to avoid the form stretching too much
+  margin: 0 auto; // Center the form
+}
+
+.emailInput {
+  padding: 10px;
+  width: 100%; // Let input take up remaining space
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.submitButton {
+  padding: 10px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50px; // Set width to ensure the button is properly aligned with input field
+
+  &:hover {
+    background-color: #cc0000;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  justify-items: stretch;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.list {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.list li {
+  margin-bottom: 10px;
+}
+
+.leftSection,
+.centerSection,
+.rightSection,
+.downloadAppSection {
+  text-align: center;
+}
+
+.appImages {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.appImage {
+  height: 40px; // Adjust size of app store images
+}
+
+.footerBottom {
+  text-align: center;
+  color: #bbb;
+  margin-top: 20px;
+  font-size: 12px;
+}

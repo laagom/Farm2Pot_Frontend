@@ -1,0 +1,42 @@
+// Header.module.scss
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 1.5rem; // 2xl in Tailwind
+  font-weight: bold; // Tailwind's font-bold
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem; // Tailwind's space-x-8 (8 * 0.25rem)
+}
+
+.link {
+  text-decoration: none;
+  color: inherit; // Keeps the text color from parent
+  &:hover {
+    color: #f87171; // Tailwind's hover:text-red-500
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; // Space between the input and its container
+}
+
+.searchInput {
+  border: 1px solid #ccc;
+  border-radius: 0.375rem; // Tailwind's rounded-md
+  padding: 0.25rem 0.75rem; // Tailwind's px-3 py-1
+  font-size: 0.875rem; // Tailwind's text-sm
+}

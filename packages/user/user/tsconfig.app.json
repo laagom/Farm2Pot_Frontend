@@ -28,7 +28,9 @@
     "baseUrl": ".",
     "paths": {
       "@core/*": ["../../core/*"]
-    }
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"]
 }

@@ -1,74 +1,82 @@
-// Login.tsx
-import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useState, useContext, type ChangeEvent, type FormEvent, } from 'react';
+import { loginUser, type LoginPayload } from '../../api/UserApi';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 import styles from './UserLogin.module.scss';
+import loginImage from '../../images/login-illustration2.png';
 
-// TODO: 실제로는 useAuthContext 등을 사용
-const UserLogin = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const [searchParams] = useSearchParams();
+interface LoginFormData {
+  loginId: string;
+  password: string;
+}
+
+const UserLogin: React.FC = () => {
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault(); // 폼 제출 시 새로고침 방지
+  const [formData, setFormData] = useState<LoginFormData>({
+    loginId: '',
+    password: '',
+  });
 
-    // TODO: 여기에 실제 로그인 로직 또는 useAuthContext 사용
-    // 일단은 그냥 로그인 되었다고 가정
-
-    // 쿼리 파라미터로 전달된 리디렉션 경로로 이동
-    const redirectPath = searchParams.get('pathname') || '/user/main';
-    navigate(redirectPath, { replace: true });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 입력값 변경 핸들러
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
 
-    if (name === 'id') setId(value);
-    if (name === 'password') setPassword(value);
+    const payload: LoginPayload = { ...formData };
+
+    try {
+      const result = await loginUser(payload);
+      setUser(result.user);
+      navigate('/main');
+    } catch (error) {
+      alert('로그인 중 오류가 발생했습니다.');
+    }
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <div className={styles.loginBox}>
-        <h2>로그인</h2>
-        <form onSubmit={handleLogin}>
-          <div className={styles.inputGroup}>
-            <label htmlFor="id">아이디</label>
-            <input
-              type="text"
-              id="id"
-              name="id"
-              placeholder="아이디를 입력하세요."
-              value={id}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label htmlFor="password">비밀번호</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="비밀번호를 입력하세요."
-              value={password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit" className={styles.loginBtn}>
-            로그인
-          </button>
-          <div className={styles.loginFooter}>
-            <a href="#">비밀번호 찾기</a>
-            <span> | </span>
-            <a href="#">회원가입</a>
-          </div>
-        </form>
+    <main className={styles.main}>
+      <div className={styles.loginImage}>
+        <img
+          src={loginImage}
+          alt="shopping illustration"
+          className={styles.image}
+        />
       </div>
-    </div>
+
+      <div className={styles.loginForm}>
+        <h2 className={styles.title}>로그인</h2>
+        <p className={styles.description}>Enter your details below</p>
+
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="loginId"
+            placeholder="loginid"
+            value={formData.loginId}
+            onChange={handleChange}
+            className={styles.input}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            className={styles.input}
+          />
+          <button type="submit" className={styles.button}>로그인</button>
+        </form>
+
+        <div className={styles.forgotPassword}>
+          <a href="#">Forgot Password?</a>
+        </div>
+      </div>
+    </main>
   );
 };
 
